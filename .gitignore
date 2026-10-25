@@ -1,0 +1,15 @@
+# Certificados, llaves privadas y cuenta de Let's Encrypt: NUNCA al repo
+certbot/conf/*
+# Excepto los archivos genéricos de TLS que publica certbot (no son secretos)
+!certbot/conf/options-ssl-nginx.conf
+!certbot/conf/ssl-dhparams.pem
+
+# Contenido temporal de los desafíos ACME (docker compose crea la carpeta al levantar)
+certbot/www/
+
+# Vhosts reales de cada servidor: solo se versionan el catch-all y la plantilla
+nginx/conf.d/*.conf
+!nginx/conf.d/00-default.conf
+
+.env
+*.log
